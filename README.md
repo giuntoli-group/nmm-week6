@@ -1,39 +1,55 @@
 # nmm-week6
 
-Colloids are fun, but let's go up in scale and model complexity! This assignment is similar in scope to the one of last week, but we focus on macromolecules/polymers with CGMD
+Colloids are fun, but let's go up in scale and model complexity! This assignment is similar in scope to the one of last week, but we focus on macromolecules/polymers with Coarse grained models. 
 
-## Assignment 1
+## Assignment 1 - Who needs Chemistry?
 
-Once again, develop a CG model for a simple polymer (polylactic acid) from a higher-resolution all-atom model. The connectivity between beads means bonded interactions must also be considered. For both bonded and non-bonded interactions we follow a coarse-graining scheme called Iterative Boltzmann Inversion. 
+Develop a Coarse Grained model for a simple polymer (polylactic acid) from a higher-resolution all-atom model. The complex macromolecular structure means that the chemical connectivity must be considered by using multiple beads with bonded interactions. For both bonded and non-bonded interactions we follow a coarse-graining scheme called Iterative Boltzmann Inversion. 
 
 ### Instructions
 
-1a. WAIT FOR FILES FROM YANG. RUN AA 50 MOLECULES, MEASURE DISTIBUTIONS OF BONDS, ANGLES, DIHEDRALS, AND G(R). FIT ANALYTICAL FUNCTIONS.
+1a. Load the polylactic-AA.data atomistic structure in Ovito and inspect it. How many atoms belong to the same monomer? How many monomers are present in the entire chain?
 
-1b. BUILD A CG CHAIN, DEFINE TOTAL MASS, SIZE, AND INTERACTIONS BASED ON 1A. COMPARE STRUCTURE AND DYNAMICS WITH AA. ALSO COMPARE COMPUTATIONAL COST.
+1b. Define the beads of the CG model. To do so, use the script SCRIPT-BEADS-DEFINITION. How many beads per monomer are defined? How many atoms are included in each of the CG beads?
 
-## Assignment 2
+1c. Define the bonded interactions of the CG model.
+
+(i) Run the script in.polylactic-AA of a single atomistic chain.
+
+(ii) From the sampled configurations, use the script ??? to plot the distributions of all bond, angles, and dihedrals between the centers of mass of the CG beads.
+
+(iii) Fit the distributions using the script ??? (EXPLAIN ROUGHLY HOW IT WORKS).
+
+(iv) From your fits, write the equations used for the bonded potential terms of the CG force field, specifying the values of all parameters. Discuss briefly also what you would have to do to then calibrate the non-bonded interactions.
+
+1d (OPTIONAL, EASY BUT TAKES SOME TIME). Calibrate the non-bonded interactions to complete the CG force field. Run both AA and CG simulations of several chains (density ~0.9, temperature 300K), and compare the distributions of bonds, angles, and radial distribution function between the AA and the CG models.
+
+## Assignment 2 - Walking Randomly
 
 In this assignment we cover the very basics of polymer physics, focusing on the conformation in solution of polymers with varying architecture and molecular interactions. For this exercise, we introduce the bead-spring model for polymers.
 
 ### Instructions
 
-2a. starting from the in.single_chain file, perform simulations of a single polymer chain of varying molecular weight N in both good solvent and poor solvent conditions. Tune the non-bonded interactions to access different regimes of solvent quality. For all solvent conditions, measure the radius of gyration Rg, persistance length l_p, and autocorrelation of the end-to-end vector Ree(t) as a function of N. Fit the data obtained analytically and compare your results to what is expected from theory (LINK TO THEORETICAL SCALINGS). Also discuss briefly how you would map the adimensional units of the model (time, energy, temperature) to real units.
-Bonus (optional): identify the theta-solvent conditions in this model. (TO TEST IT OURSELVES).
+2a. starting from the in.single_chain file, obtain the scaling law for radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
 
-2b. REPEAT WITH STARS/GRAFTED NANOPARTICLES? HOW TO MAKE IT NOT BORING?
+To build the initial chain, use the script CHAIN GENERATION+"PACKING", GIVE PRECISE INSTRUCTIONS. SAME SCRIPT USED LATER FOR MORE COMPLEX ARCHITECTURES.
 
-## Assignment 3
+## Assignment 3 - Digital Breaking Bad
 
-Thanks to advanced synthesis techniques, it is possible to design polymers with tunable architecture and chemical structure, so-called block copolymers, that can assemble into highly-controlled structures. Our synthesis technique is a Python script, let's invent new polymers that chemists can only dream of! 
+Thanks to advanced synthesis techniques, it is possible to design polymers with tunable architecture and chemical structure, so-called block copolymers, that can assemble into highly-controlled structures. Our synthesis technique is the Python script used in assignment 2, let's invent new polymers that chemists can only dream of and let's see what they assemble into! 
 
 ### Instructions
 
-3a. Use the "branched_polymer.py" (WHATEVER YOU ARE USING TO GENERATE BRANCHED STRUCTURES, INCLUDING BLOCKS OF DIFFERENT TYPES AND PROPERLY COMMENTED FOR STUDENTS) to generate the following structures. In all cases, A-type monomers are hydrophobic (poor solvent conditions) and B-type monomers are hydrophilic (good solvent conditions). (i) a linear triblock copolymer with ABA structure (each block being 10 monomers long). (ii) A star polymer (DETAILS, CHECK PAPER, AIM FOR TUBULAR). (iii) A bottlebrush polymer (DETAILS, CHECK PAPER, AIM FOR LAMELLAR). Report the structures generated via Ovito snapshots.
+3a. Explore in more detail the script "branched_polymer.py" (WHATEVER YOU ARE USING TO GENERATE BRANCHED STRUCTURES, INCLUDING BLOCKS OF DIFFERENT TYPES AND PROPERLY COMMENTED FOR STUDENTS). 
 
-3b. Adapting the in.single_chain file, for each structure separately, run simulations containing multiple molecules to study their self-assembly behavior in solution. Report your results both with snapshots and quantitative metrics, such as (CHECK PAPER). Careful: make sure you have enough molecules to have good statistics, but not enough that the time needed for equilibration is beyond the scales of the course! Make similar considerations for the density you choose, both too high or too low densities will increase the time needed. Alongside your other metrics, also report proof that your system is equilibrated.
+(i) what are the tunable parameters of the script? Which polymer architectures can be generated?
 
-3c. Bonus (optional): design challenge! Build a copolymer architecture so that (CONSTRAINTS, MAKE IT A FUN PUZZLE!).
+(ii) using the branched_polymer.py script and A PACKING SCRIPT, generate at least three different data files, each containing a mixture of block copolymers of your choice, with tunable non-bonded interactions for each bead type. Make snapshots with Ovito and discuss the self-assembly behavior you expect.
+
+3b. Choose two of your structures. Adapt the in.single_chain file to define all needed non-bonded parameters of the force field and extend the run time. Run the simulation to study their self-assembly behavior in solution. Report your results both with snapshots and quantitative metrics. Include proof that your system is equilibrated. NEED ADDITIONAL POST-PROCESSING INSTRUCTIONS OR TIPS?
+
+Pro tips: make sure to have enough polymers to get good statistics, but not so many that the equilibration takes forever. Use the literature to guide your choice. Stay away from high-density phases if you don't want to wait forever to reach an equilibrium phase.
+
 
 ## Assignment 4
 
