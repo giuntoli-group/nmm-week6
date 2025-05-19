@@ -14,7 +14,7 @@ Develop a Coarse Grained model for a simple polymer (polylactic acid) from a hig
 
 1c. Define the bonded interactions of the CG model.
 
-(i) Run the script PLA_CHARMM.in of a single atomistic chain.
+(i) Run the script PLA_CHARMM.in of a single atomistic chain. (`--nodes=1 --ntasks-per-node=2` seems to give good performance)
 
 (ii) From the sampled configurations, use the scripts in the `PMF_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads.
 
