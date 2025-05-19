@@ -8,15 +8,15 @@ Develop a Coarse Grained model for a simple polymer (polylactic acid) from a hig
 
 ### Instructions
 
-1a. Load the polylactic-AA.data atomistic structure in Ovito and inspect it. How many atoms belong to the same monomer? How many monomers are present in the entire chain?
+1a. Load the `PLA_CHARMM.data` atomistic structure in Ovito and inspect it. How many atoms belong to the same monomer? How many monomers are present in the entire chain?
 
 1b. Define the beads of the CG model. To do so, use the script SCRIPT-BEADS-DEFINITION. How many beads per monomer are defined? How many atoms are included in each of the CG beads?
 
 1c. Define the bonded interactions of the CG model.
 
-(i) Run the script in.polylactic-AA of a single atomistic chain.
+(i) Run the script PLA_CHARMM.in of a single atomistic chain.
 
-(ii) From the sampled configurations, use the script ??? to plot the distributions of all bond, angles, and dihedrals between the centers of mass of the CG beads.
+(ii) From the sampled configurations, use the scripts in the `PMF_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads.
 
 (iii) Fit the distributions using the script ??? (EXPLAIN ROUGHLY HOW IT WORKS).
 
