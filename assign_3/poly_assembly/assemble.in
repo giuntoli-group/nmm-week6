@@ -1,0 +1,42 @@
+
+
+units           lj
+atom_style      full
+dimension       3
+boundary        p p p
+timestep        0.005
+
+read_data       equilibrated.data
+
+bond_style      fene
+bond_coeff      * 30.0 1.5 1.0 1.0
+special_bonds   fene
+
+
+variable        runtime equal 1000000
+variable        Temp equal 1.0
+variable        velSeed equal 926458  
+
+
+velocity        all create ${Temp} ${velSeed}
+
+
+thermo_style    custom step temp density press etotal pe ke epair spcpu
+thermo          1000
+
+minimize        0.0 1.0e-8 1000 100000
+
+fix             noDrift all momentum 10 linear 1 1 1
+fix             nvt1 all nvt temp ${Temp} ${Temp} 0.5
+
+pair_style      lj/cut 2.5
+pair_coeff      1 1 1.0 1.0
+pair_coeff      2 2 1.0 1.0 1.12
+pair_coeff      1 2 1.0 1.0 1.12
+
+dump            1 all custom 1000 self_assemble.lammpstrj id type xu yu zu vx vy vz
+fix             nvt1 all nvt temp ${Temp} ${Temp} 0.5
+run             ${runtime}
+
+write_data      assembled.data nofix nocoeff
+
