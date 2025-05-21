@@ -30,9 +30,9 @@ In this assignment we cover the very basics of polymer physics, focusing on the 
 
 ### Instructions
 
-2a. starting from the in.single_chain file, obtain the scaling law for radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
+2a. starting from the `run_single_chain.in` file, obtain the scaling law for radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
 
-To build the initial chain, use the script CHAIN GENERATION+"PACKING", GIVE PRECISE INSTRUCTIONS. SAME SCRIPT USED LATER FOR MORE COMPLEX ARCHITECTURES.
+To build the simulation box with one chain, first create a linear chain data and molecule files using `create_bottlebrush.py` script. Set the sidechain length (SC_length) = 0. The data file is useful to inspect the created chain in Ovito. Execute `run_lammps.sh` to run the `pack_chains.in` script that will pack the molecule into a larger box. Make sure the name of the molecule file is correct in the `pack_chains.in` script.
 
 ## Assignment 3 - Digital Breaking Bad
 
