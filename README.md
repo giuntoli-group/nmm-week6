@@ -1,10 +1,10 @@
 # nmm-week6
 
-Colloids are fun, but let's go up in scale and model complexity! This assignment is similar in scope to the one of last week, but we focus on macromolecules/polymers with Coarse grained models.
+Colloids are fun, but let's go up in scale and model complexity! This assignment is similar in scope to the one of last week, but we focus on polymers with coarse grained models.
 
 ## Assignment 1 - Who needs Atoms?
 
-Develop a Coarse Grained model for a simple polymer (polylactic acid) from a higher-resolution all-atom model. The complex macromolecular structure means that the chemical connectivity must be considered by using multiple beads with bonded interactions. For both bonded and non-bonded interactions we follow a coarse-graining scheme called Iterative Boltzmann Inversion.
+Develop a coarse grained model for a simple polymer (polylactic acid) from a higher-resolution all-atom model. The complex macromolecular structure means that the chemical connectivity must be considered by using multiple beads with bonded interactions. For both bonded and non-bonded interactions, we follow a coarse-graining scheme called (Iterative) Boltzmann Inversion. With number of iterations N=1... Credit to Yang Wang (wangyang.cgmd@gmail.com) for the original scripts.
 
 ### Instructions
 
@@ -14,11 +14,9 @@ Develop a Coarse Grained model for a simple polymer (polylactic acid) from a hig
 
 (i) Run the script PLA_CHARMM.in of a single atomistic chain.
 
-(ii) From the sampled configurations, use the scripts in the `prob_distr_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads. The scripts plot the PMFs from the all-atom simulations, fit them to an analytical function and output the fitting parameters.
+(ii) From the sampled configurations, use the scripts in the `prob_distr_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads. The scripts plot the distributions for the "effective" CG beads from the all-atom simulations, fit them to an analytical function and output the fitting parameters. How does MDanalysis identify the CG beads? Tip: look into the compute_bond_distances() function in the compute_bonds.py file.
 
-(iii) Look into `compute_bond_distances()` function in the `compute_bonds.py` file: How does MDAnalysis identify the CG beads?
-
-(iv) From your fits, write the equations used for the bonded potential terms of the CG force field, specifying the values of all parameters. Discuss briefly also what you would have to do to then calibrate the non-bonded interactions.
+(iii) From your fits, write the equations used for the bonded potential terms of the CG force field, specifying the values of all parameters obtained. Discuss briefly also what you would have to do to then calibrate the non-bonded interactions.
 
 1d (OPTIONAL, EASY BUT TAKES SOME TIME). Calibrate the non-bonded interactions to complete the CG force field. Run both AA and CG simulations of several chains (density ~0.9, temperature 300K), and compare the distributions of bonds, angles, and radial distribution function between the AA and the CG models.
 
@@ -28,7 +26,7 @@ In this assignment we cover the very basics of polymer physics, focusing on the 
 
 ### Instructions
 
-2a. starting from the `run_single_chain.in` file, obtain the scaling law for radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
+2a. starting from the `run_single_chain.in` file, obtain the scaling law for the radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
 
 To build the simulation box with one chain, first create a linear chain data and molecule files using `create_polymer.py` script. Set the sidechain length (SC_length) = 0. The data file is useful to inspect the created chain in Ovito. Execute `run_lammps.sh` to run the `pack_chains.in` script that will pack the molecule into a larger box. Make sure the name of the molecule file is correct in the `pack_chains.in` script.
 
