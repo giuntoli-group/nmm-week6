@@ -1,22 +1,20 @@
 # nmm-week6
 
-Colloids are fun, but let's go up in scale and model complexity! This assignment is similar in scope to the one of last week, but we focus on macromolecules/polymers with Coarse grained models. 
+Colloids are fun, but let's go up in scale and model complexity! This assignment is similar in scope to the one of last week, but we focus on macromolecules/polymers with Coarse grained models.
 
 ## Assignment 1 - Who needs Chemistry?
 
-Develop a Coarse Grained model for a simple polymer (polylactic acid) from a higher-resolution all-atom model. The complex macromolecular structure means that the chemical connectivity must be considered by using multiple beads with bonded interactions. For both bonded and non-bonded interactions we follow a coarse-graining scheme called Iterative Boltzmann Inversion. 
+Develop a Coarse Grained model for a simple polymer (polylactic acid) from a higher-resolution all-atom model. The complex macromolecular structure means that the chemical connectivity must be considered by using multiple beads with bonded interactions. For both bonded and non-bonded interactions we follow a coarse-graining scheme called Iterative Boltzmann Inversion.
 
 ### Instructions
 
 1a. Load the `PLA_CHARMM.data` atomistic structure in Ovito and inspect it. How many atoms belong to the same monomer? How many monomers are present in the entire chain?
 
-1b. Define the beads of the CG model. How many beads per monomer are defined? How many atoms are included in each of the CG beads?
-
-1c. Define the bonded interactions of the CG model.
+1b. Define the bonded interactions of the CG model.
 
 (i) Run the script PLA_CHARMM.in of a single atomistic chain. (`--nodes=1 --ntasks-per-node=2` seems to give good performance)
 
-(ii) From the sampled configurations, use the scripts in the `PMF_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads. The scripts plot the PMFs from the all-atom simulations, fit them to an analytical function and output the fitting parameters. 
+(ii) From the sampled configurations, use the scripts in the `prob_distr_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads. The scripts plot the PMFs from the all-atom simulations, fit them to an analytical function and output the fitting parameters.
 
 (iii) Look into `compute_bond_distances()` function in the `compute_bonds.py` file: How does MDAnalysis identify the CG beads?
 
@@ -32,21 +30,21 @@ In this assignment we cover the very basics of polymer physics, focusing on the 
 
 2a. starting from the `run_single_chain.in` file, obtain the scaling law for radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
 
-To build the simulation box with one chain, first create a linear chain data and molecule files using `create_bottlebrush.py` script. Set the sidechain length (SC_length) = 0. The data file is useful to inspect the created chain in Ovito. Execute `run_lammps.sh` to run the `pack_chains.in` script that will pack the molecule into a larger box. Make sure the name of the molecule file is correct in the `pack_chains.in` script.
+To build the simulation box with one chain, first create a linear chain data and molecule files using `create_polymer.py` script. Set the sidechain length (SC_length) = 0. The data file is useful to inspect the created chain in Ovito. Execute `run_lammps.sh` to run the `pack_chains.in` script that will pack the molecule into a larger box. Make sure the name of the molecule file is correct in the `pack_chains.in` script.
 
 ## Assignment 3 - Digital Breaking Bad
 
-Thanks to advanced synthesis techniques, it is possible to design polymers with tunable architecture and chemical structure, so-called block copolymers, that can assemble into highly-controlled structures. Our synthesis technique is the Python script used in assignment 2, let's invent new polymers that chemists can only dream of and let's see what they assemble into! 
+Thanks to advanced synthesis techniques, it is possible to design polymers with tunable architecture and chemical structure, so-called block copolymers, that can assemble into highly-controlled structures. Our synthesis technique is the Python script used in assignment 2, let's invent new polymers that chemists can only dream of and let's see what they assemble into!
 
 ### Instructions
 
-3a. Explore in more detail the script `create_bottlebrush.py` (WHATEVER YOU ARE USING TO GENERATE BRANCHED STRUCTURES, INCLUDING BLOCKS OF DIFFERENT TYPES AND PROPERLY COMMENTED FOR STUDENTS). 
+3a. Explore in more detail the script `create_polymer.py`.
 
 (i) what are the tunable parameters of the script? Which polymer architectures can be generated?
 
-(ii) using the `create_bottlebrush.py` script and `pack_chains.in`, generate at least three different data files, each containing a mixture of block copolymers of your choice, with tunable non-bonded interactions for each bead type. Make snapshots with Ovito and discuss the self-assembly behavior you expect.
+(ii) using the `create_polymer.py` script and `pack_chains.in`, generate at least three different data files, each containing a mixture of block copolymers of your choice, with tunable non-bonded interactions for each bead type. Make snapshots with Ovito and discuss the self-assembly behavior you expect.
 
-3b. Choose two of your structures. Adapt the in.single_chain file to define all needed non-bonded parameters of the force field and extend the run time. Run the simulation to study their self-assembly behavior in solution. Report your results both with snapshots and quantitative metrics. Include proof that your system is equilibrated. NEED ADDITIONAL POST-PROCESSING INSTRUCTIONS OR TIPS?
+3b. Choose two of your structures. Adapt the `run.in` file to define all needed non-bonded parameters of the force field and extend the run time. Run the simulation to study their self-assembly behavior in solution. Report your results both with snapshots and quantitative metrics. Include proof that your system is equilibrated.
 
 Pro tips: make sure to have enough polymers to get good statistics, but not so many that the equilibration takes forever. Use the literature to guide your choice. Stay away from high-density phases if you don't want to wait forever to reach an equilibrium phase. Adjust the box length and number of chains in the `pack_chains.in` script to get the desired system.
 
