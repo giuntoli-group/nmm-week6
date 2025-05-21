@@ -73,21 +73,25 @@ def save_distribution(path, x_full, y_full):
 
 
 def main():
-    data_path = "../simplified/PLA_CHARMM.data"
-    traj_path = "../simplified/unwrapped_traj.dcd"
-    universe = load_universe(data_path, traj_path)
+    
+    data_file = "../PLA_CHARMM.data"
+    traj_file = "../unwrapped_traj.dcd"
+    
+    universe = load_universe(data_file, traj_file)
 
     start, end = 0, 2000
     dihedrals = compute_dihedrals(universe, start, end)
 
     x, y, x_full, y_full = build_distribution(dihedrals, step=1)
+    
     popt = fit_dihedral_function(x, y)
 
     # Optional saving
-    save_plot_path = None  # e.g., r"F:\...\A-A-A-A.jpg"
-    save_data_path = None  # e.g., r"F:\...\A-A-A-A.txt"
+    save_plot_path = None # e.g., "dihedral_dist_plot.jpg"
+    save_data_path = None # e.g., "dihedral_distribution.txt"
 
     kT = 0.59616113  # kT = 0.59616113 Kcal/mol at 300 K
+    print('dihedral_style    nharmonic')
     print('dihedral_coeff    1 ',end=' ')
     print(*[f"{-kT * p:.5f}" for p in popt])
     

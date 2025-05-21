@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-# from matplotlib.ticker import AutoMinorLocator, MaxNLocator
 from scipy.optimize import curve_fit
 from MDAnalysis.core.universe import Universe
 from collections import Counter
@@ -71,9 +70,10 @@ def save_distribution(file_path, x_full, y_full):
 
 
 def main():
+    
     # Input files
-    data_file = "../simplified/PLA_CHARMM.data"
-    traj_file = "../simplified/unwrapped_traj.dcd"
+    data_file = "../PLA_CHARMM.data"
+    traj_file = "../unwrapped_traj.dcd"
 
     # Parameters
     start, end = 0, 2000
@@ -86,10 +86,13 @@ def main():
     bonds = compute_bond_distances(u, start, end)
     x, y = process_bond_distribution(bonds)
     x_full, y_full = fill_distribution(x, y, x_range, step)
+    
     popt = fit_distribution(x, y)
+    
     plot_distribution(x, y, popt, xlabel=r"$l_{A-A} \; (\mathrm{\AA})$", ylabel=r"$P_{bond}$", output_file=save_plot_path)
     
     kT = 0.59616113  # kT = 0.59616113 Kcal/mol at 300 K
+    print('bond_style    class2')
     print('bond_coeff    1 ',end=' ')
     print( *[f"{val:.5f}" for val in [popt[1], -kT*popt[2], -kT*popt[3], -kT*popt[4]]])
     

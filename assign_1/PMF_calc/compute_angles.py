@@ -74,13 +74,14 @@ def save_distribution(path, x, y):
 
 
 def main():
+    
     # File paths
-    data_file = "../simplified/PLA_CHARMM.data"
-    traj_file = "../simplified/unwrapped_traj.dcd"
+    data_file = "../PLA_CHARMM.data"
+    traj_file = "../unwrapped_traj.dcd"
 
     # Optional save paths
-    save_plot_path = None
-    save_data_path = None
+    save_plot_path = None # e.g., "angle_dist_plot.jpg"
+    save_data_path = None # e.g., "angle_distribution.txt"
 
     # Parameters
     start_frame, end_frame = 0, 2000
@@ -92,9 +93,11 @@ def main():
     angles_rad = compute_angles(u, start=start_frame, end=end_frame)
     x, y = process_angle_distribution(angles_rad, bin_step=bin_step)
     x_full, y_full = fill_distribution(x, y, step=bin_step, angle_range=angle_range)
+    
     popt = fit_distribution(x, y)
     
     kT = 0.59616113  # kT = 0.59616113 Kcal/mol at 300 K
+    print('angle_style    quartic')
     print('angle_coeff    1 ',end=' ')
     print(*[f"{val:.5f}" for val in [np.rad2deg(popt[1]), -kT*popt[2], -kT*popt[3], -kT*popt[4]]])
 
