@@ -4,7 +4,7 @@
 variable      L equal 50
 
 # molecule file that defines a single polymer chain
-variable      molecule_file string 'branched_polymer_A.mol'
+variable      molecule_file string 'polymer_A.mol'
 
 # number of chains to pack into the box
 variable      num_chains equal 1
@@ -25,7 +25,7 @@ create_box    2 mybox bond/types 1 extra/bond/per/atom 5 extra/special/per/atom 
 # read the molecule file into a molecule
 molecule      mol1 ${molecule_file}
 
-#create_atoms type  style   particles   seed  region  mol   molfile  seed            
+#create_atoms type  style   particles   seed  region  mol   molfile  seed
 create_atoms  0     random  ${num_chains}          9565  NULL    mol   mol1     12553
 
 mass          * 1.0

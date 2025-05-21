@@ -11,7 +11,7 @@ def generate_mol(BB_length, SC_length, graft_freq, sequence, filetype='mol'):
         sequence (str): Sequence for backbone types (e.g., 'AB', 'ABA', etc.).
         filetype (str): Either 'mol' or 'data'.
     """
-    
+
     # --- Constants ---
     l = 0.97  # bond length
     n = BB_length
@@ -82,7 +82,7 @@ def generate_mol(BB_length, SC_length, graft_freq, sequence, filetype='mol'):
                 bondb.append(start + j + 1)
 
     # --- Write to file ---
-    filename = f'branched_polymer_{sequence}.{filetype}'
+    filename = f'polymer_{sequence}.{filetype}'
     with open(filename, 'w') as f:
         if filetype == 'mol':
             f.write('\n\n')

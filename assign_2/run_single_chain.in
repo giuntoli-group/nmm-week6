@@ -20,35 +20,24 @@ variable        Tdamping equal 100*${dt}
 
 timestep        ${dt}
 
-velocity        all create ${Temp} ${velSeed} mom no
+velocity        all create ${Temp} ${velSeed}
 
 
 minimize        0.0 1.0e-8 1000 100000
 
 
 thermo_style    custom step time temp vol density press etotal pe ke epair ebond eangle
-thermo          1000
+thermo          10000
 thermo_modify   line yaml format none
 
-pair_style      lj/cut 1.12
-pair_coeff      * * 1.0 1.0
+# The last coefficient (r_cut_ij) is optional. If not specified, the global LJ cutoff (r_cut_global) specified in the pair_style command is used.
+pair_style      lj/cut <r_cut_global>
+pair_coeff      <type_i>  <type_j>  <eps_ij>  <sigma_ij>  [<r_cut_ij>]
 
-#fix             nvt all nvt temp ${Temp} ${Temp} ${Tdamping}
-#fix           stabilize all momentum 5 linear 1 1 1
-fix           lng all langevin ${Temp} ${Temp} ${Tdamping} ${velSeed}
-fix           nve1 all nve
-
-
-reset_timestep  0
-thermo          10000
-
+fix             lng all langevin ${Temp} ${Temp} ${Tdamping} ${velSeed}
+fix             nve1 all nve
 
 dump            lindump all custom 10000 traj_lin.lammpstrj id type xu yu zu vx vy vz
-
-variable        step equal logfreq(1,9,10)
-dump            logdump all custom 1 traj_log.lammpstrj id type xu yu zu vx vy vz
-dump_modify     logdump every v_step first yes
-dump_modify     logdump sort id
 
 run             1000000
 
