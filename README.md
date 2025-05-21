@@ -10,15 +10,15 @@ Develop a Coarse Grained model for a simple polymer (polylactic acid) from a hig
 
 1a. Load the `PLA_CHARMM.data` atomistic structure in Ovito and inspect it. How many atoms belong to the same monomer? How many monomers are present in the entire chain?
 
-1b. Define the beads of the CG model. To do so, use the script SCRIPT-BEADS-DEFINITION. How many beads per monomer are defined? How many atoms are included in each of the CG beads?
+1b. Define the beads of the CG model. How many beads per monomer are defined? How many atoms are included in each of the CG beads?
 
 1c. Define the bonded interactions of the CG model.
 
 (i) Run the script PLA_CHARMM.in of a single atomistic chain. (`--nodes=1 --ntasks-per-node=2` seems to give good performance)
 
-(ii) From the sampled configurations, use the scripts in the `PMF_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads.
+(ii) From the sampled configurations, use the scripts in the `PMF_calc/` directory to plot the distributions of all bonds, angles, and dihedrals between the centers of mass of the CG beads. The scripts plot the PMFs from the all-atom simulations, fit them to an analytical function and output the fitting parameters. 
 
-(iii) Fit the distributions using the script ??? (EXPLAIN ROUGHLY HOW IT WORKS).
+(iii) Look into `compute_bond_distances()` function in the `compute_bonds.py` file: How does MDAnalysis identify the CG beads?
 
 (iv) From your fits, write the equations used for the bonded potential terms of the CG force field, specifying the values of all parameters. Discuss briefly also what you would have to do to then calibrate the non-bonded interactions.
 
