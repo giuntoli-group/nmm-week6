@@ -49,16 +49,19 @@ Thanks to advanced synthesis techniques, it is possible to design polymers with 
 Pro tips: make sure to have enough polymers to get good statistics, but not so many that the equilibration takes forever. Use the literature to guide your choice. Stay away from high-density phases if you don't want to wait forever to reach an equilibrium phase. Adjust the box length and number of chains in the `pack_chains.in` script to get the desired system.
 
 
-## Assignment 4
+## Assignment 4 - Opposites Attract
 
 Assignment 3 dealt with so-called "simple coacervation", the assembly of same-type macromolecules due to (mainly) enthalpic effects. Complex coacervation, where two (or more) different macromolecules assemble in water is also ubiquitous in materials and biological phenomena. This can be observed with simple models of polyelectrolytes in water, which you will do in this assignment that uses a slab setup.
 
 ### Instructions
 
-4a. ~~Use the "branched_polymer.py" script to generate two linear chains, each of them with 30 same-type monomers (type 1 for one chain, type 2 for the other). Create a box with 50 chains of each type, and run the "in.coacervate" simulation, setting good solvent conditions for Lennard-Jones interactions, and the charge of the two bead types to +1 and -1 respectively (FOR NAYAN: SCRIPT SHOULD START FROM A HOMOGENEOUS SOLUTION AND GET TO THE SLAB, IDEALLY. NO SALT). Prove that the system reaches equilibrium. After that, measure the relative densities of the polymer-rich phase and the solvent-reach phase (ADD INSTRUCTIONS/HINTS HERE?). Measure the radius of gyration of the polymers and discuss potential finite-size effects of your simulation setup.~~
+4a. As you saw in assignment 3, sometimes it takes forever to achieve complete phase separation. In the case of complex
+coacervation, it is even slower due to the Coulomb calculations (bonus question: how does the computational cost scales
+in the presence of charges?). So here, we start from a system that is already phase separated and measure what it takes
+to equalize the two phases.
 
 (i) Inspect `equilibrated.data` file and determine the number of polymers of each type, number of monomers in one chain and the charges on the two types of polymers.
 
 (ii) Measure the relative densities of the polymer-rich phase and the solvent-rich phase You can either use the linear_density function in the bead-spring module or use the histogram modifier in Ovito to calculate the densities. Measure the radius of gyration of the polymers and discuss potential finite-size effects of your simulation setup.
 
-4b. Repeat the simulations by adding increasing amount of salt, simulated in the form of individual beads with charge +1 and -1 (always in equal amount, to ensure charge neutrality of the system). Use the `add_salt.in` script to add salt to `equilibrated.data`. For each simulation, report in the same plot the densities of the polymer-rich phase and the solvent-rich phase. Doing so will allow you to build the binodal curve for the complex coacervation process. From this plot, estimate the critical salt concentration at which the complex coacervation does not happen anymore. Compare the salt concentration found to experimentally reported values and discuss potential limitations of this model.
+4b. Time to dissolve the coacervate. Repeat the simulations by adding increasing amount of salt, simulated in the form of individual beads with charge +1 and -1 (always in equal amount, to ensure charge neutrality of the system). Use the `add_salt.in` script to add salt to `equilibrated.data`. For each simulation, report in the same plot the densities of the polymer-rich phase and the solvent-rich phase. Doing so will allow you to build the binodal curve for the complex coacervation process. From this plot, estimate the critical salt concentration at which the complex coacervation does not happen anymore. Compare the salt concentration found to experimentally reported values and discuss potential limitations of this model.
