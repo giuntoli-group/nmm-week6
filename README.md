@@ -40,15 +40,15 @@ Thanks to advanced synthesis techniques, it is possible to design polymers with 
 
 ### Instructions
 
-3a. Explore in more detail the script "branched_polymer.py" (WHATEVER YOU ARE USING TO GENERATE BRANCHED STRUCTURES, INCLUDING BLOCKS OF DIFFERENT TYPES AND PROPERLY COMMENTED FOR STUDENTS). 
+3a. Explore in more detail the script `create_bottlebrush.py` (WHATEVER YOU ARE USING TO GENERATE BRANCHED STRUCTURES, INCLUDING BLOCKS OF DIFFERENT TYPES AND PROPERLY COMMENTED FOR STUDENTS). 
 
 (i) what are the tunable parameters of the script? Which polymer architectures can be generated?
 
-(ii) using the branched_polymer.py script and A PACKING SCRIPT, generate at least three different data files, each containing a mixture of block copolymers of your choice, with tunable non-bonded interactions for each bead type. Make snapshots with Ovito and discuss the self-assembly behavior you expect.
+(ii) using the `create_bottlebrush.py` script and `pack_chains.in`, generate at least three different data files, each containing a mixture of block copolymers of your choice, with tunable non-bonded interactions for each bead type. Make snapshots with Ovito and discuss the self-assembly behavior you expect.
 
 3b. Choose two of your structures. Adapt the in.single_chain file to define all needed non-bonded parameters of the force field and extend the run time. Run the simulation to study their self-assembly behavior in solution. Report your results both with snapshots and quantitative metrics. Include proof that your system is equilibrated. NEED ADDITIONAL POST-PROCESSING INSTRUCTIONS OR TIPS?
 
-Pro tips: make sure to have enough polymers to get good statistics, but not so many that the equilibration takes forever. Use the literature to guide your choice. Stay away from high-density phases if you don't want to wait forever to reach an equilibrium phase.
+Pro tips: make sure to have enough polymers to get good statistics, but not so many that the equilibration takes forever. Use the literature to guide your choice. Stay away from high-density phases if you don't want to wait forever to reach an equilibrium phase. Adjust the box length and number of chains in the `pack_chains.in` script to get the desired system.
 
 
 ## Assignment 4
