@@ -26,7 +26,7 @@ In this assignment we cover the very basics of polymer physics, focusing on the 
 
 ### Instructions
 
-2a. Start from the `run_single_chain.in` file and complete the script with the values of all relevant missing parameters. Obtain the scaling law for the radius of gyration of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
+2a. Start from the `run_single_chain.in` file and complete the script with the values of all relevant missing parameters. Obtain the scaling law for the [radius of gyration](https://library.fiveable.me/physical-chemistry-ii/unit-7/polymer-conformations-radius-gyration/study-guide/ZZkPanXFxDIZiVtt) of a bead-spring polymer chain in solution with varying length N. Report two plots, one for good solvent and one for poor solvent conditions. Compare your results to theoretical models.
 
 To build the simulation box with one chain, first create a linear chain data and molecule files using `create_polymer.py` script. Set the sidechain length (SC_length) = 0. The data file is useful to inspect the created chain in Ovito. Execute `run_lammps.sh` to run the `pack_chains.in` script that will pack the molecule into a larger box. Make sure the name of the molecule file is correct in the `pack_chains.in` script.
 
